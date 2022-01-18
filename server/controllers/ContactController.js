@@ -12,6 +12,10 @@ function router(app){
         email:req.body.email,
         notes:req.body.notes,
         companyRef:req.body.companyName,
+        location:req.body.location,
+        street:req.body.street,
+        zipCode:req.body.zipCode
+
 
     
     }).then((data)=>{
@@ -20,16 +24,29 @@ function router(app){
       next(err);
     })
   })
+
+
+  /**
+ * @swagger
+ * /api/contacts:
+ *  get:
+ *    description: Use to request all contacts
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
     app.get("/api/contacts",(req,res,next)=>{
         db.Contacts.findAll({
         
         })
         .then((data)=>{
-            res.status(202).json(data)
+            res.json(data)
         }).catch((err)=>{
             next(err);
         })
     });
+
+    
     // view property --  by id
     app.get('/api/contact/:id',(req,res,next)=>{
       db.Contacts.findAll({
@@ -42,9 +59,25 @@ function router(app){
         next(err)
       })
     })
-    // creating a resource  
+    /**
+ * @swagger
+ * /api/contacts:
+ *    put:
+ *      description: Use to return all contacts
+ *    parameters:
+ *      - fullname: contact
+ *        in: query
+ *        description: Name of our customer
+ *        required: false
+ *        schema:
+ *          type: string
+ *          format: string
+ *    responses:
+ *      '201':
+ *        description: Successfully created contact
+ */ 
 
-// patching a resource 
+
 app.patch("/api/contact/:id",(req,res,next)=>{
   db.Contacts.update({
     fullName:req.body.fullName,
@@ -91,7 +124,14 @@ app.patch("/api/contact/:id",(req,res,next)=>{
                       },
                       notes: {
                         $like: "%" + req.params.keyword + "%"
-                      }
+                      },
+                      street: {
+                        $like: "%" + req.params.keyword + "%"
+                      },
+                      zipCode: {
+                        $like: "%" + req.params.keyword + "%"
+                      },
+
                 }
             }
         }).then((results)=>{

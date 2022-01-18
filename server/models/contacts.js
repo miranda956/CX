@@ -45,17 +45,26 @@ module.exports=(sequelize,DataTypes)=>{
     type:DataTypes.STRING,
     allowNull:false,
     required:true,
-   }
+   },
+   street:{
+    type:DataTypes.STRING,
+    allowNull:false,
+    required:true,
+
+   },
+   zipCode:{
+
+    type:DataTypes.STRING,
+    allowNull:false,
+    required:true,
+
+   },
+
+
 
 
     }) 
-    Contacts.associate=(models)=>{
-        Contacts.belongTo(models.Company,{
-            foreignkey:{
-                allowNull:false
-            }
-        })
-    }
+  
     return Contacts;
 
 }
