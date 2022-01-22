@@ -46,8 +46,8 @@ const swaggerOptions = {
     swaggerDefinition: {
       info: {
         version: "1.0.0",
-        title: "RojaCx API",
-        description: "RojaCx API Information",
+        title: "RojaSales API",
+        description: "RojaSales API Information",
         contact: {
           name: " Developer"
         },
@@ -58,7 +58,7 @@ const swaggerOptions = {
   };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
+require("./controllers/ContactController")(app);
 
 db.sequelize.sync({force:false}).then(()=>{
    const port = process.env.PORT || 5000;

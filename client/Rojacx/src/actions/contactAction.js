@@ -1,9 +1,9 @@
 /* eslint-disable prefer-template */
 /* eslint-disable prettier/prettier */
+import axios from 'axios';
 
 import {CONTACT_CREATE_FAIL,CONTACT_CREATE_REQUEST,CONTACT_CREATE_SUCCESS,CONTACT_DETAILS_FAIL,CONTACT_DETAILS_REQUEST,CONTACT_DETAILS_SUCCESS,CONTACT_LIST_FAIL,CONTACT_LIST_REQUEST,CONTACT_LIST_SUCCESS,CONTACT_UPDATE_FAIL,CONTACT_UPDATE_REQUEST,CONTACT_UPDATE_SUCCESS, CONTACT_SAVE_FAIL,CONTACT_SAVE_REQUEST,CONTACT_SAVE_SUCCESS} from"../constants/contactConstants";
 
-import axios from 'axios';
 
 const createContact=(contact)=>async(dispatch,getState)=>{
     try{

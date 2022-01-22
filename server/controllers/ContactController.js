@@ -3,7 +3,36 @@ const db=require("../models");
 
 function router(app){
 
-  app.post("/api/Contact",(req,res,next)=>{
+/**
+ * @swagger
+ * /api/contact:
+ *   post:
+ *     description: Create a new contact
+ *     tags:
+ *       - Contacts
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: contact
+ *         description: contact object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           type:object
+ *         properties:
+ *           fullname:
+ *             type:string:
+ *          
+ * 
+ *          
+ *     responses:
+ *       200:
+ *         description: new contact
+ *         schema:
+ *           
+ */
+
+  app.post("/api/contact",(req,res,next)=>{
     db.Contacts.create({
         fullName:req.body.fullName,
         jobTitle:req.body.jobTitle,
@@ -25,33 +54,59 @@ function router(app){
     })
   })
 
-
   /**
  * @swagger
  * /api/contacts:
- *  get:
- *    description: Use to request all contacts
- *    responses:
- *      '200':
- *        description: A successful response
+ *   get:
+ *     description: Retrieve the full list of contacts
+ *     tags:
+ *       - Contacts
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: stocks
+ *         schema:
  */
-    app.get("/api/contacts",(req,res,next)=>{
-        db.Contacts.findAll({
-        
-        })
-        .then((data)=>{
-            res.json(data)
-        }).catch((err)=>{
-            next(err);
-        })
-    });
 
-    
-    // view property --  by id
-    app.get('/api/contact/:id',(req,res,next)=>{
+
+   app.get('/api/contacts',(req,res,next)=>{
+     db.Contacts.findAll({
+
+     }).then((data)=>{
+       res.json(data)
+     }).catch((err)=>{
+       next(err)
+     })
+   })
+
+
+
+ /**
+ * @swagger
+ * /api/contact/id:
+ *   get:
+ *     description: Retrieve an specific contact
+ *     tags:
+ *       - Contacts
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         description: id of the contact to retrieve
+ *         in: path
+ *         required: true
+ *         type: number
+ *     responses:
+ *       200:
+ *         description: contact
+ *         schema:
+ */
+
+      app.get('/api/contact/:id',(req,res,next)=>{
       db.Contacts.findAll({
         where:{
-          id:req.param.id
+          id:2
         }
       }).then((data)=>{
         res.status(202).json(data)
@@ -59,23 +114,34 @@ function router(app){
         next(err)
       })
     })
-    /**
+    
+
+/**
  * @swagger
- * /api/contacts:
- *    put:
- *      description: Use to return all contacts
- *    parameters:
- *      - fullname: contact
- *        in: query
- *        description: Name of our customer
- *        required: false
- *        schema:
- *          type: string
- *          format: string
- *    responses:
- *      '201':
- *        description: Successfully created contact
- */ 
+ * /api/contact/{id}:
+ *   patch:
+ *     description: Update lastUpdate field of an contact
+ *     tags:
+ *       - Contacts
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         description: id of the contact to update
+ *         in: path
+ *         required: true
+ *         type: number
+ *       - name: lastUpdate
+ *         description: timestamp to use as contacts's lastUpdate field
+ *         in: body
+ *         required: true
+ *         schema:
+ *     responses:
+ *       200:
+ *         description: updated contact
+ *         schema:
+ */
+
 
 
 app.patch("/api/contact/:id",(req,res,next)=>{
@@ -99,7 +165,11 @@ app.patch("/api/contact/:id",(req,res,next)=>{
     next(err)
   })
 })
-// searching a resource 
+
+
+
+
+
     app.get("api/search/keyword",(req,res,next)=>{
         db.Contacts.findAll({
             where:{

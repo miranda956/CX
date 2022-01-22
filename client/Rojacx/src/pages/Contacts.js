@@ -1,12 +1,14 @@
-import React,{ useEffect, useReducer}  from "react";
+/* eslint-disable prefer-template */
+/* eslint-disable prettier/prettier */
+
+import React,{ useEffect}  from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {listContacts,updateContact,} from "../actions/contactAction";
-import {link} from "react-router-dom";
 
 
 function contactScreen(props){
-    const contactList= useSelector((state)=>state.contactList);
-    const {loading, contacts, error}= contactList;
+    //const contactList= useSelector((state)=>state.contactList);
+    //const {loading, contacts, error}= contactList;
 
     const dispatch= useDispatch();
 

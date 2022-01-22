@@ -1,24 +1,24 @@
 module.exports=(sequelize,DataTypes)=>{
-    const Contacts =sequelize.define("Contacts",{
-   fullName:{
+    const Leads =sequelize.define("Leads",{
+   firstName:{
     type:DataTypes.STRING,
     allowNull:false,
     required:true,
 
    },
-   jobTitle:{
+   lastName:{
     type:DataTypes.STRING,
     allowNull:false,
     required:true,
 
    },
-   address:{
+   companyName:{
     type:DataTypes.STRING,
     allowNull:false,
     required:true,
 
    },
-   phone:{
+   work:{
     type:DataTypes.INTEGER,
     allowNull:false,
     required:true,
@@ -30,37 +30,25 @@ module.exports=(sequelize,DataTypes)=>{
     required:true,
        
    },
-   notes:{
+   mobile:{
     type:DataTypes.STRING,
     allowNull:false,
     required:true,
    },
-   companyRef:{
+   owner:{
 
     type:DataTypes.STRING,
     allowNull:false,
     required:true,
    },
-   location:{
+   leadStatus:{
     type:DataTypes.STRING,
     allowNull:false,
     required:true,
-   },
-   street:{
-    type:DataTypes.STRING,
-    allowNull:false,
-    required:true,
-
-   },
-   zipCode:{
-
-    type:DataTypes.STRING,
-    allowNull:false,
-    required:true,
-
    }
+
     }) 
   
-    return Contacts;
+    return Leads;
 
 }
