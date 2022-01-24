@@ -15,14 +15,17 @@ exports.allAccess = (req, res) => {
       res.status(200).send("sales operation manager content")
   }
 
-  exports.insideSalesPerson=(req,res)=>{
+  exports.insideSalesPersonBoard=(req,res)=>{
       res.status(200).send("inside sales person content")
   }
 
-  exports.outsideSalesPerson=(req,res)=>{
+  exports.outsideSalesPersonBoard=(req,res)=>{
       res.status(200).send("outside sales person content")
   }
 
-  exports.accountExecutive=(req,res)=>{
+  exports.accountExecutiveBoard=(req,res)=>{
       res.status(200).send("account executive content")
+  }
+  exports.salesDevelopmentRepresentativeBoard=(req,res)=>{
+      res.status(200).send("sales development representive content")
   }
