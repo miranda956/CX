@@ -8,6 +8,13 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       }
     });
+ 
+    Role.associate=(models)=>{
+      Role.belongsToMany(models.users,{
+        through:'userRoles'
+      })
+
+    }
   
     return Role;
   };
