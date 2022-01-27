@@ -54,13 +54,14 @@ const swaggerOptions = {
         servers: ["http://localhost:5000"]
       }
     },
-    apis: ['./controllers/*.js']
+    apis: ['./routes/*.js','./controllers/*.js']
+    
   };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 require("./controllers/ContactController")(app);
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+require('./routes/authRoutes')(app);
+require('./routes/userRoutes')(app);
 
 db.sequelize.sync({force:false}).then(()=>{
    const port = process.env.PORT || 5000;
